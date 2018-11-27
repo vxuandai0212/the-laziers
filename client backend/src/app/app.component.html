@@ -1,0 +1,11 @@
+<div class="container">
+    <nav class="nav justify-content-end">
+        <div *ngIf="currentUser" class="button-row">
+            <button class="float-left" mat-raised-button color="primary" [routerLink]="['/posts']">All Posts</button>
+            <span class="username ml-4">Welcome {{currentUser.user.email}}</span>
+            <button mat-raised-button color="warn" (click)="logout()">Logout</button>
+        </div>
+    </nav>
+
+    <router-outlet></router-outlet>
+</div>

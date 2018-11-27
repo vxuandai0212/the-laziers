@@ -1,0 +1,68 @@
+<div class="example-container mat-elevation-z8">
+  <div class="example-loading-shade" *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  </div>
+  <div class="button-row">
+    <a mat-flat-button color="primary" (click)="postDetails()">
+      <mat-icon>info</mat-icon>
+    </a>
+  </div>
+  <mat-card class="example-card">
+    <form [formGroup]="postForm" (ngSubmit)="onFormSubmit(postForm.value)">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Title" formControlName="title" [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!postForm.get('title').valid && postForm.get('title').touched">Please enter
+            Title</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <textarea matInput placeholder="Short Content" formControlName="short_content" [errorStateMatcher]="matcher"></textarea>
+        <mat-error>
+          <span *ngIf="!postForm.get('short_content').valid && postForm.get('short_content').touched">Please enter
+            Short Content</span>
+        </mat-error>
+      </mat-form-field>
+      <label for="editor">Content</label>
+      <app-ngx-editor id="editor" [config]="editorConfig" [placeholder]="'Enter text here...'" [spellcheck]="true" formControlName="content"></app-ngx-editor>
+      <label for="imageUpload">Thumbnail</label>
+      <div class="avatar-upload">
+        <div class="avatar-edit">
+            <input type='file' id="imageUpload" (change)="onSelectFile($event)" accept=".png, .jpg, .jpeg" />
+            <label for="imageUpload"></label>
+        </div>
+        <div class="avatar-preview">
+            <div id="imagePreview" [ngStyle]="{'background-image': 'url(' + image + ')'}">
+            </div>
+        </div>
+      </div>
+      <mat-form-field class="example-full-width">
+        <mat-select placeholder="Category" formControlName="category">
+          <mat-option *ngFor="let category of categories" [value]="category.value">
+            {{category.value}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="!postForm.get('category')">Please choose a category</mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Tags" formControlName="tags" [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!postForm.get('tags').valid && postForm.get('tags').touched">Please enter
+            Tags</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+          <input matInput placeholder="Author" formControlName="created_by" [errorStateMatcher]="matcher">
+          <mat-error>
+            <span *ngIf="!postForm.get('created_by').valid && postForm.get('created_by').touched">Please enter
+              author</span>
+          </mat-error>
+        </mat-form-field>
+      <div class="button-row">
+        <button type="submit" [disabled]="!postForm.valid" mat-flat-button color="primary">
+          <mat-icon>save</mat-icon>
+        </button>
+      </div>
+    </form>
+  </mat-card>
+</div>
