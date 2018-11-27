@@ -1,0 +1,23 @@
+{
+  "name": "thelaziers",
+  "version": "1.0.0",
+  "description": "This is news website",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently --kill-others \"npm start --prefix user_client\" \"npm start --prefix admin_client\" \"npm start --prefix server\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/vxuandai0212/thelaziers.git"
+  },
+  "author": "Dai Vuong",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/vxuandai0212/thelaziers/issues"
+  },
+  "homepage": "https://gitlab.com/vxuandai0212/thelaziers#readme",
+  "dependencies": {
+    "concurrently": "^4.1.0"
+  }
+}
